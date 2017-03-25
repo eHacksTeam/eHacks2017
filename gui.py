@@ -1,10 +1,11 @@
 from appJar import gui
-import neural as nn
-import string
+import classifier_lib as nn
+
 
 def press(name):
 	#print("run script to get tweet")
 	print(nn.display_indicators(100))
+
 
 def prob(name):
 	tweet = app.getEntry("urlbox")
