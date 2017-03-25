@@ -6,6 +6,7 @@ import tweepy
 import tweepy, time, sys
 
 argfile = "input.txt"
+argfile2 = "output.txt"
 
 # enter the corresponding information from your Twitter application:
 CONSUMER_KEY = 'fcThscxsJM0QI4myazCTjPIRc'  # keep the quotes, replace this with your consumer key
@@ -20,11 +21,21 @@ filename = open(argfile, 'r')
 f = filename.readlines()
 filename.close()
 
+tweet_ids = []
+tweet_texts = []
 
-while True:
-    for line in f:
-        print(line)
-        results = api.search(q=str(line))
-        for tweet in results:
-            api.retweet(tweet.id)
-            # time.sleep(900)  # Tweet every 15 minutes
+for line in f:
+    print(line)
+    results = api.search(q=str(line), lang='en')
+    for tweet in results:
+        if tweet.id not in tweet_ids:
+            try:
+                tweet_texts.append(tweet.text)
+                tweet_ids.append(tweet.id)
+            except tweepy.RateLimitError:
+                filename = open(argfile2, 'a')
+                for item in tweet_texts:
+                    filename.write(item)
+                    filename.write("\n")
+                tweet_texts = []
+                filename.close()

@@ -4,43 +4,11 @@ import sklearn
 from sklearn import datasets, linear_model
 import matplotlib.pyplot as plt
 import pyrenn as prn
+import tensorflow
 
 
 def main():
     rnn_func()
-    # input data set
-    # x = np.array([[0, 0, 1],
-    #               [0, 1, 1],
-    #               [1, 0, 1],
-    #               [1, 1, 1]])
-    #
-    # # output data set
-    # y = np.array([[0, 0, 1, 1]]).T
-    #
-    # # seed random numbers to make calculation
-    # # deterministic (just a good practice)
-    # np.random.seed(1)
-    #
-    # # initialize weights randomly with mean 0
-    # syn0 = 2 * np.random.random((3, 1)) - 1
-    #
-    # for iter in range(10000):
-    #     # forward propagation
-    #     l0 = x
-    #     l1 = nonlin(np.dot(l0, syn0))
-    #
-    #     # how much did we miss?
-    #     l1_error = y - l1
-    #
-    #     # multiply how much we missed by the
-    #     # slope of the sigmoid at the values in l1
-    #     l1_delta = l1_error * nonlin(l1, True)
-    #
-    #     # update weights
-    #     syn0 += np.dot(l0.T, l1_delta)
-    #
-    # print("Output After Training:")
-    # print(l1)
 
 
 def random_plot():
