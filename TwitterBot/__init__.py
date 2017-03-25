@@ -16,13 +16,20 @@ filename = open(argfile, 'r')
 f = filename.readlines()
 
 writefile = open(argfile2, 'w')
+bad_chars = ['<', '>', ';', ':', '@', '#', '$', '%', '^', '&', '*', '[', ']', '{' '}', '`', '~', '\\', '/', '|']
 
 for line in f:
     print(line)
     results = api.search(q=str(line), lang='en')
     for tweet in results:
-        writefile.write(str(tweet.text.encode("utf-8"))[2:])
-        writefile.write("\n\n")
-    if results:
-        time.sleep(30)
+        string = str(tweet.text.encode("utf-8"))[2:]
+        string2 = str()
+        for char in range(len(string)):
+            if not string[char] in bad_chars:
+                    string2 += string[char]
+        writefile.write(string2)
+        writefile.write("\n")
+        print(string2)
+        writefile.flush()
+        time.sleep(0.5)
 writefile.close()
