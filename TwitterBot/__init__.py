@@ -1,8 +1,3 @@
-import tweepy
-
-# !/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 import tweepy, time, sys
 
 argfile = "input.txt"
@@ -19,23 +14,15 @@ api = tweepy.API(auth)
 
 filename = open(argfile, 'r')
 f = filename.readlines()
-filename.close()
 
-tweet_ids = []
-tweet_texts = []
+writefile = open(argfile2, 'w')
 
 for line in f:
     print(line)
     results = api.search(q=str(line), lang='en')
     for tweet in results:
-        if tweet.id not in tweet_ids:
-            try:
-                tweet_texts.append(tweet.text)
-                tweet_ids.append(tweet.id)
-            except tweepy.RateLimitError:
-                filename = open(argfile2, 'a')
-                for item in tweet_texts:
-                    filename.write(item)
-                    filename.write("\n")
-                tweet_texts = []
-                filename.close()
+        writefile.write(str(tweet.text.encode("utf-8"))[2:])
+        writefile.write("\n\n")
+    if results:
+        time.sleep(30)
+writefile.close()
