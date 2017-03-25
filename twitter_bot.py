@@ -35,12 +35,9 @@ ACCESS_SECRET = 'aMRRjxU1ExVceX40fFN9lGOiJkCIzBqx1YPwL0ZG5Cjox'  # keep the quot
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth)
-
 filename = open(argfile, 'r')
 f = filename.readlines()
-
 writefile = open(argfile2, 'w')
-bad_chars = ['<', '>', ';', ':', '@', '#', '$', '%', '^', '&', '*', '[', ']', '{' '}', '`', '~', '\\', '/', '|']
 
 
 def tokenize(s):
@@ -64,6 +61,14 @@ def concatenate_and_format_tokens(tokens):
         string += tokens[i] + ' '
     string = "('" + string + "', 'neg'),"
     return string
+
+
+def get_tweet_url(tweet):
+    return tweet.place["url"]
+
+
+def get_tweet_user(tweet):
+    return tweet.user["screen_name"]
 
 
 for line in f:
