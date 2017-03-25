@@ -1,12 +1,11 @@
 import tweepy, time, re
 
-
-emoticons_str = """
-    r'(?:'
-    r'[:=;]
-    r'[oO\-]?
-    r'[D\)\]\(\]/\\OpP])'
-    """
+emoticons_str = r"""
+    (?:
+        [:=;] # Eyes
+        [oO\-]? # Nose (optional)
+        [D\)\]\(\]/\\OpP] # Mouth
+    )"""
 
 regex_str = [
     emoticons_str,
@@ -79,5 +78,5 @@ for line in f:
         writefile.write(concatenate_and_format_tokens(tokens))
         writefile.write("\n")
         writefile.flush()
-        time.sleep(0.5)
+        #time.sleep(0.5)
 writefile.close()
