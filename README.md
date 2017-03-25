@@ -1,7 +1,7 @@
 # eHacks2017
 Project for 2017 eHacks
 
-Goals:6
+## Goals:
 
 -Win prize for Data Vizualization
 
