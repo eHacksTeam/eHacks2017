@@ -3,7 +3,6 @@ annoy
 annoyed
 annoying
 anus
-apathetic
 appalled
 appalling
 arse
@@ -24,6 +23,7 @@ belligerent
 below me
 bemoan
 beneath
+bigot
 bitch
 bitches
 bitchez
@@ -284,6 +284,7 @@ questionable
 quirky
 quit
 quuef
+racist
 raped
 red neck
 redneck
