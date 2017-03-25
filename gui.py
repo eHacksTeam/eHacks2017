@@ -10,9 +10,9 @@ def press(name):
 def prob(name):
 	tweet = app.getEntry("urlbox")
 	print(tweet)
-	probility = nn.get_prob_of_pos(tweet)
-	print(probility)
-	app.setEntry("probbox",probility)
+	probability = nn.get_prob_of_pos(tweet)
+	print(probability)
+	app.setEntry("probbox",probability)
 
 
 app = gui()
@@ -25,7 +25,7 @@ app.addButtons(["Analyze"], [prob], 1, 1, 2)
 app.addHorizontalSeparator(2,0,4)
 
 app.addEntry("probbox", 3, 0) 
-app.addLabel("problabel", "Probibility of harrasment:", 3, 1) 
+app.addLabel("problabel", "Probability of harrasment:", 3, 1) 
 
 app.addButtons(["display indicators"], [press], 4, 0, 2)
 
