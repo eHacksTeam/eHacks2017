@@ -1,12 +1,12 @@
 import tweepy, time, re
-from nltk.tokenize import word_tokenize
 
-emoticons_str = r"""
-    (?:
-        [:=;] # Eyes
-        [oO\-]? # Nose (optional)
-        [D\)\]\(\]/\\OpP] # Mouth
-    )"""
+
+emoticons_str = """
+    r'(?:'
+    r'[:=;]
+    r'[oO\-]?
+    r'[D\)\]\(\]/\\OpP])'
+    """
 
 regex_str = [
     emoticons_str,
@@ -56,9 +56,13 @@ def preprocess(s, lowercase=False):
 
 def concatenate_and_format_tokens(tokens):
     string = ""
+    httpstr = "http://"
     for i in range(len(tokens)):
-        string += ' ' + tokens[i]
-    string = "('" + string + "', ),"
+        if httpstr in tokens[i]:
+            tokens[i] = ''
+        tokens[i] = re.sub(r'[^a-zA-Z0-9.,:;#-]+', '', tokens[i])
+        string += tokens[i] + ' '
+    string = "('" + string + "', 'neg'),"
     return string
 
 
@@ -67,18 +71,8 @@ for line in f:
     results = api.search(q=str(line), lang='en')
     for tweet in results:
         tokens = preprocess(str(tweet.text))
-        """
-        string = str(tweet.text.encode("utf-8"))[1:]
-        string2 = str()
-        for char in range(len(string)):
-            if char is '\n' or char is '\t':
-                string2 += ' '
-            if not string[char] in bad_chars: #need exceptions for newline and tabs
-                    string2 += string[char]
-        """
         writefile.write(concatenate_and_format_tokens(tokens))
         writefile.write("\n")
-        print(tokens)
         writefile.flush()
         time.sleep(0.5)
 writefile.close()
