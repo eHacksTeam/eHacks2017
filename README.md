@@ -21,8 +21,10 @@ If you find a user that is a "bully" you could check their tweets with other use
  - Fix neural net
  - possibly put username in and check some number of tweets. Average the prob of pos to see how harrass-y person is
  
- 
- 
+## Resources: 
+http://textblob.readthedocs.io/en/latest/advanced_usage.html#advanced
+http://stevenloria.com/how-to-build-a-text-classification-system-with-python-and-textblob/
+
 ## Future Improvements: 
  - emoji support
  
@@ -37,3 +39,5 @@ If you find a user that is a "bully" you could check their tweets with other use
  - Twitter
  - Natural Language Processor
  - Open Source
+ 
+ 
