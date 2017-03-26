@@ -18,9 +18,14 @@ If you find a user that is a "bully" you could check their tweets with other use
  
 ## Resources: 
 http://textblob.readthedocs.io/en/latest/advanced_usage.html#advanced
+
 http://stevenloria.com/how-to-build-a-text-classification-system-with-python-and-textblob/
+
 http://iamtrask.github.io/2015/07/12/basic-python-network/ #neural net
+
 http://tweepy.readthedocs.io/en/v3.5.0/ #tweepy API
+
+https://dev.havenondemand.com/apis
 
 
 ## Future Improvements: 
