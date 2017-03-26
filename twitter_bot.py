@@ -1,12 +1,11 @@
 import tweepy, time, re
 
-
-emoticons_str = """
-    r'(?:'
-    r'[:=;]
-    r'[oO\-]?
-    r'[D\)\]\(\]/\\OpP])'
-    """
+emoticons_str = r"""
+    (?:
+        [:=;] # Eyes
+        [oO\-]? # Nose (optional)
+        [D\)\]\(\]/\\OpP] # Mouth
+    )"""
 
 regex_str = [
     emoticons_str,
@@ -53,10 +52,10 @@ def preprocess(s, lowercase=False):
 
 def concatenate_and_format_tokens(tokens):
     string = ""
-    httpstr = "http://"
+    httpstr = "http"
     for i in range(len(tokens)):
-        if httpstr in tokens[i]:
-            tokens[i] = ''
+        if re.search(('http'), tokens[i]):
+            tokens[i] = re.sub('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '' ,tokens[i])
         tokens[i] = re.sub(r'[^a-zA-Z0-9.,:;#-]+', '', tokens[i])
         string += tokens[i] + ' '
     string = "('" + string + "', 'neg'),"
@@ -67,7 +66,7 @@ def get_tweet_url(tweet):
     return tweet.place["url"]
 
 
-def get_tweet_user(tweet):
+def get_user_by_tweet(tweet):
     return tweet.user["screen_name"]
 
 
@@ -79,5 +78,5 @@ for line in f:
         writefile.write(concatenate_and_format_tokens(tokens))
         writefile.write("\n")
         writefile.flush()
-        time.sleep(0.5)
+        #time.sleep(0.5)
 writefile.close()
