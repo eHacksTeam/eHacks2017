@@ -1,5 +1,4 @@
-#credit Marco Bonzanini for "Text Pre-Processing" tutorial for tweets
-import tweepy, time, re, copy
+import tweepy, time, re
 
 emoticons_str = r"""
     (?:
@@ -24,17 +23,19 @@ regex_str = [
 tokens_re = re.compile(r'(' + '|'.join(regex_str) + ')', re.VERBOSE | re.IGNORECASE)
 emoticon_re = re.compile(r'^' + emoticons_str + '$', re.VERBOSE | re.IGNORECASE)
 
-argfile = "./programdata/input.txt"
-argfile2 = "./programdata/output.txt"
+argfile = "input.txt"
+argfile2 = "output.txt"
 
 # enter the corresponding information from your Twitter application:
-CONSUMER_KEY = ''                                         # keep the quotes, replace this with your consumer key
-CONSUMER_SECRET = ''             # keep the quotes, replace this with your consumer secret key
-ACCESS_KEY = ''                  # keep the quotes, replace this with your access token
-ACCESS_SECRET = ''                    # keep the quotes, replace this with your access token secret
+CONSUMER_KEY = 'fcThscxsJM0QI4myazCTjPIRc'                                         # keep the quotes, replace this with your consumer key
+CONSUMER_SECRET = 'BWZQA7NmZA6Ypf8ptIN6MIa1deSX8W4hVj8PlhnjIEjasTCNio'             # keep the quotes, replace this with your consumer secret key
+ACCESS_KEY = '845541669370023936-RFA65KEuv8cO3Xt0Ek9rJEkXrKCyu2a'                  # keep the quotes, replace this with your access token
+ACCESS_SECRET = 'aMRRjxU1ExVceX40fFN9lGOiJkCIzBqx1YPwL0ZG5Cjox'                    # keep the quotes, replace this with your access token secret
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth)
+filecount = 0
+
 
 def tokenize(s):
     return tokens_re.findall(s)
@@ -49,9 +50,8 @@ def preprocess(s, lowercase=False):
 
 def concatenate_and_format_tokens(tokens):
     string = ""
-    httpstr = "http"
     for i in range(len(tokens)):
-        if re.search(('http'), tokens[i]):
+        if re.search('http', tokens[i]):
             tokens[i] = re.sub(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '' ,tokens[i])
         tokens[i] = re.sub(r'[^a-zA-Z0-9.,:;#-]+', '', tokens[i])
         string += tokens[i] + ' '
@@ -80,12 +80,11 @@ def get_tweets_from_user(name):
 
 
 def main():
-    
     filename = open(argfile, 'r')
-    f = filename.readlines()
-    writefile = open(argfile2, 'w')
 
     while True:
+        f = filename.readlines()
+        writefile = open(argfile2, 'w')
         count = 0
         for line in f:
             print(line)
@@ -97,9 +96,8 @@ def main():
                 writefile.write(concatenate_and_format_tokens(tokens))
                 writefile.write("\n")
                 writefile.flush()
-                time.sleep(0.5)
+                time.sleep(1)
             count += 1
-        text = copy.copy(writefile, "r" , encoding='utf-8').readlines()
         writefile.close()
 
 
