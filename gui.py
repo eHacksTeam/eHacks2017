@@ -3,8 +3,13 @@ import classifier_lib as nn
 
 
 def press(name):
-	#print("run script to get tweet")
-	print(nn.display_indicators(100))
+	url = app.getEntry("urlbox")
+	if url.lstrip()[0] is "@":
+		print("runscript for username")
+		app.setLabel("problabel","Average user harrassment probility")
+	else:
+		print("run script to get tweet")
+		app.setLabel("problabel","Tweet harrasment probility")
 
 
 def prob(name):
@@ -18,15 +23,15 @@ def prob(name):
 app = gui()
 app.addLabel("title","Mean Tweet Analyzer",0,0,2) 
 
-app.addEntry("urlbox", 1, 0, 2)
+app.addEntry("urlbox", 1, 0)
 app.setEntry("urlbox","string input")
-app.addButtons(["Analyze"], [prob], 1, 1, 2)
+app.addButtons(["Analyze"], [press], 1, 1, 2)
 
 app.addHorizontalSeparator(2,0,4)
 
-app.addEntry("probbox", 3, 0) 
-app.addLabel("problabel", "Probability of harrasment:", 3, 1) 
+app.addLabel("problabel", "Probability", 3, 0, 2) 
+app.addEntry("probbox", 4, 0, 2) 
 
-app.addButtons(["display indicators"], [press], 4, 0, 2)
+#app.addButtons(["display indicators"], [press], 4, 0, 2)
 
 app.go()

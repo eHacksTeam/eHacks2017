@@ -1,5 +1,6 @@
 import pickle
 
+cl = pickle.load(open("classifier.pickle", "rb"))
 
 # returns percent probability that the string is a hit
 def get_prob_of_pos(string):
@@ -33,7 +34,7 @@ def display_indicators(num):
 def update_training_data(new_data):
     return cl.update(new_data)
 
-
+'''
 cl = pickle.load(open("classifier.pickle", "rb"))
 print("Probability of \"" + "asshat" + "\" being pos (hit): " + str(get_prob_of_pos("asshat")))
 print("Probability of \"" + "sorry" + "\" being neg (miss): " + str(get_prob_of_neg("sorry")))
@@ -48,3 +49,4 @@ for line in f:
         num += 1
         print("replaced " + num + " tags")
         line.replace("neg", "pos")
+'''
