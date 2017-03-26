@@ -66,7 +66,7 @@ def get_tweet_url(tweet):
     return tweet.place["url"]
 
 
-def get_tweet_user(tweet):
+def get_user_by_tweet(tweet):
     return tweet.user["screen_name"]
 
 
