@@ -23,8 +23,13 @@ regex_str = [
 tokens_re = re.compile(r'(' + '|'.join(regex_str) + ')', re.VERBOSE | re.IGNORECASE)
 emoticon_re = re.compile(r'^' + emoticons_str + '$', re.VERBOSE | re.IGNORECASE)
 
+<<<<<<< HEAD
+argfile = "./programdata/input.txt"
+argfile2 = "./programdata/output.txt"
+=======
 argfile = "input.txt"
 argfile2 = "temp.txt"
+>>>>>>> 0625fed0e3a216b2bff578dcbead41c625b451cf
 
 # enter the corresponding information from your Twitter application:
 CONSUMER_KEY = 'fcThscxsJM0QI4myazCTjPIRc'                                         # keep the quotes, replace this with your consumer key

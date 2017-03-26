@@ -7,6 +7,7 @@ app = gui()
 def press(name):
 	print(nn.display_indicators(100))
 
+
 def analyze(name):
 	url = app.getEntry("urlbox")
 	if url.lstrip()[0] is "@":
@@ -20,10 +21,14 @@ def analyze(name):
 		for tweet in tweets:
 			probs.append(nn.get_prob_of_pos(tweet.text))
 
-		average = round(sum(probs, 0.0) / len(probs),3)
+		try:
+			average = round(sum(probs, 0.0) / len(probs),3)
+		except:
+			app.warningBox("Tweet Error", "User has not tweeted!")
+			app.setEntry("probbox",0.00)
+			return
 
-
-		writefile = open("./user_prob.log", 'a')
+		writefile = open("./programdata/user_prob.log", 'a')
 		writefile.write(url+","+str(average)+"\n")
 		writefile.close()
 
@@ -31,10 +36,15 @@ def analyze(name):
 		app.setEntry("probbox",str(average))
 	else:
 		statusid = url.split("/")[len(url.split("/"))-1]
-		tweet = tb.get_tweet_by_status(statusid)
-		print(tweet.text)
+		try:
+			tweet = tb.get_tweet_by_status(statusid)
+		except:
+			app.warningBox("URL Error", "Tweet not found!")
+			return
+
 		app.setLabel("problabel","Tweet harrasment probility")
 		app.setEntry("probbox",str(nn.get_prob_of_pos(tweet.text)))
+
 
 def prob(name):
 	tweet = app.getEntry("urlbox")
@@ -51,15 +61,17 @@ def main():
 	app.addEntry("urlbox", 1, 0)
 	app.setEntry("urlbox","URL or @username")
 	app.addButtons(["Analyze"], [analyze], 1, 1, 2)
+	app.enableEnter(analyze)
 
 	app.addHorizontalSeparator(2,0,4)
 
 	app.addLabel("problabel", "Probability", 3, 0, 2) 
 	app.addEntry("probbox", 4, 0, 2) 
-
+	
 	#app.addButtons(["display indicators"], [press], 5, 0, 2)
 
 	app.go()
+
 
 if __name__ == "__main__":
     main()
