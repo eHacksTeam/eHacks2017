@@ -2,6 +2,7 @@
 Project for 2017 eHacks
 
 ## General Guide:
+Then run python gui.py
 
 ## Goals:
 
