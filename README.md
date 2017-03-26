@@ -2,6 +2,7 @@
 Project for 2017 eHacks
 
 ## General Guide:
+Need "classifier.pickle" file in order to run, too big to upload on github
 
 ## Goals:
 
