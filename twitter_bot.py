@@ -1,3 +1,4 @@
+#credit Marco Bonzanini for "Text Pre-Processing" tutorial for tweets
 import tweepy, time, re, copy
 
 emoticons_str = r"""
