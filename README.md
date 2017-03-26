@@ -5,9 +5,8 @@ Project for 2017 eHacks
 
 ## Goals:
 
-~Win prize for Data Vizualization~
-
--Win prize for Data Use
+-Do something with Data Vizualization
+-Do something with Big Data
 
 ## Finding rude people on twitter. 
 
@@ -15,11 +14,6 @@ Search tweets looking for rude keywords or neuralnet to analyze
 
 If you find a user that is a "bully" you could check their tweets with other users deemed to be "bullies" and possibly find common words to help find more people. (this might be handeled by the neuralnet)
 
-
-## Stuff we need done:
- - Remove all non A-Z characters from tweets before we store them in text file
- - Fix neural net
- - possibly put username in and check some number of tweets. Average the prob of pos to see how harrass-y person is
  
 ## Resources: 
 http://textblob.readthedocs.io/en/latest/advanced_usage.html#advanced
