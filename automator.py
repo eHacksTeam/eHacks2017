@@ -1,3 +1,4 @@
+# didn't use this as of 3/26/17
 def grabNewFiles():
     file1 = open("output.txt")
     file2 = open("old_data.txt")
