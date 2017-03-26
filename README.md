@@ -18,6 +18,7 @@ If you find a user that is a "bully" you could check their tweets with other use
 
 ## Stuff we need done:
  - Remove all non A-Z characters from tweets before we store them in text file
+ - Fix neural net
  - possibly put username in and check some number of tweets. Average the prob of pos to see how harrass-y person is
  
  
