@@ -22,3 +22,14 @@ If you find a user that is a "bully" you could check their tweets with other use
  
 ## Future Improvements: 
  - emoji support
+ 
+ 
+## Buzz Words: 
+ - Big Data
+ - Machine Learning
+ - Neural Network
+ - Safe Space
+ - Cyber Bullying
+ - Data Visualization
+ - Twitter
+ - Natural Language Processor
