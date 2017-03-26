@@ -62,6 +62,10 @@ def get_url_by_tweet(tweet):
     return tweet.place["url"]
 
 
+def get_tweet_by_status(sid):
+    return api.get_status(sid)
+
+
 def get_user_by_tweet(tweet):
     return tweet.user["screen_name"]
 

@@ -2,34 +2,39 @@ from appJar import gui
 import classifier_lib as nn
 import twitter_bot as tb
 
-#tweetnumber = 10
 app = gui()
-#app2 = gui()
-
-# def updatelabel(name):
-# 	tweetnumber = int(app2.getEntry("numbox"))
-# 	print("this is where my for loop would go, IF I HAD ONE", tweetnumber)
-# 	app2.stop()
-
-# def stop(name):
-# 	app2.stop()
-
 
 def press(name):
+	print(nn.display_indicators(100))
+
+def analyze(name):
 	url = app.getEntry("urlbox")
 	if url.lstrip()[0] is "@":
-		user = tb.get_user(url.lstrip()[1:])
-		print(user.id)
-		tweets = tb.get_tweets_from_user(user.name)
-		print(tweets[0].text)
-		print("runscript for username")
+		try:
+			tweets = tb.get_tweets_from_user(url.lstrip()[1:])
+		except:
+			app.warningBox("Username Error", "Username not found!")
+			return
 
-		# app2.go()
+		probs =[]
+		for tweet in tweets:
+			probs.append(nn.get_prob_of_pos(tweet.text))
+
+		average = round(sum(probs, 0.0) / len(probs),3)
+
+
+		writefile = open("./user_prob.log", 'a')
+		writefile.write(url+","+str(average)+"\n")
+		writefile.close()
+
 		app.setLabel("problabel","Average user harrassment probility")
+		app.setEntry("probbox",str(average))
 	else:
-		print("run script to get tweet")
+		statusid = url.split("/")[len(url.split("/"))-1]
+		tweet = tb.get_tweet_by_status(statusid)
+		print(tweet.text)
 		app.setLabel("problabel","Tweet harrasment probility")
-
+		app.setEntry("probbox",str(nn.get_prob_of_pos(tweet.text)))
 
 def prob(name):
 	tweet = app.getEntry("urlbox")
@@ -45,20 +50,14 @@ def main():
 
 	app.addEntry("urlbox", 1, 0)
 	app.setEntry("urlbox","URL or @username")
-	app.addButtons(["Analyze"], [press], 1, 1, 2)
+	app.addButtons(["Analyze"], [analyze], 1, 1, 2)
 
 	app.addHorizontalSeparator(2,0,4)
 
 	app.addLabel("problabel", "Probability", 3, 0, 2) 
 	app.addEntry("probbox", 4, 0, 2) 
 
-
-
-	# app2.addLabel("title","How many tweets do you want to assess",0,0,2) 
-	# app2.addNumericEntry("numbox",10)
-	# app2.addButtons(["Ok", "Cancel"], [updatelabel, stop])
-
-	#app.addButtons(["display indicators"], [press], 4, 0, 2)
+	app.addButtons(["display indicators"], [press], 5, 0, 2)
 
 	app.go()
 
