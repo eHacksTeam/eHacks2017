@@ -53,10 +53,10 @@ def preprocess(s, lowercase=False):
 
 def concatenate_and_format_tokens(tokens):
     string = ""
-    httpstr = "http://"
+    httpstr = "http"
     for i in range(len(tokens)):
-        if httpstr in tokens[i]:
-            tokens[i] = ''
+        if re.search(('http'), tokens[i]):
+            tokens[i] = re.sub('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '' ,tokens[i])
         tokens[i] = re.sub(r'[^a-zA-Z0-9.,:;#-]+', '', tokens[i])
         string += tokens[i] + ' '
     string = "('" + string + "', 'neg'),"

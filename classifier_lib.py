@@ -39,7 +39,7 @@ print("Probability of \"" + "asshat" + "\" being pos (hit): " + str(get_prob_of_
 print("Probability of \"" + "sorry" + "\" being neg (miss): " + str(get_prob_of_neg("sorry")))
 print("\"" + "beaner" + "\" is most likely " + get_most_likely_class("beaner"))
 print(display_indicators(5))
-file = open("output.txt", "rw")
+file = open("output.txt", "r")
 f = file.readlines()
 num = 0
 for line in f:
