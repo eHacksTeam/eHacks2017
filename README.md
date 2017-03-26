@@ -5,8 +5,8 @@ Project for 2017 eHacks
 
 ## Goals:
 
--Do something with Data Vizualization
--Do something with Big Data
+ - Do something with Data Vizualization
+ - Do something with Big Data
 
 ## Finding rude people on twitter. 
 
