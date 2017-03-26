@@ -2,10 +2,10 @@ from tweepy import Stream
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 
-consumer_key = 'am7XecLTFWFz2lb7HSCVDN6OH'
-consumer_secret = 'zKnIYzqzWwixVXffBro9uHUS3V1HaUz9U43px3s3A5lLE3JW33'
-access_token = '2159929704-6aIhGqJRdpkOuTYKI3zEQlQZzXUO0dl931uXYbP'
-access_secret = 'K5j8jFl0w09RIlp5FRMdUMq7c2CW6mDdNqxck1VYwkRFv'
+consumer_key = 'consumerkey'
+consumer_secret = 'consumersecret'
+access_token = 'accesstoken'
+access_secret = 'accesssecret'
 
 auth = OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_secret)
@@ -29,4 +29,4 @@ class MyListener(StreamListener):
         return True
 
 twitter_stream = Stream(auth, MyListener())
-twitter_stream.filter(track=['#Trump'])
+twitter_stream.filter(track=['#thetweet']) #put in whatever tweet you're looking for 
