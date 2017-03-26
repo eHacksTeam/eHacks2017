@@ -1,3 +1,4 @@
+#credit Marco Bonzanini for "Text Pre-Processing" tutorial for tweets
 import tweepy, time, re, copy
 
 emoticons_str = r"""
@@ -27,10 +28,10 @@ argfile = "./programdata/input.txt"
 argfile2 = "./programdata/output.txt"
 
 # enter the corresponding information from your Twitter application:
-CONSUMER_KEY = 'fcThscxsJM0QI4myazCTjPIRc'                                         # keep the quotes, replace this with your consumer key
-CONSUMER_SECRET = 'BWZQA7NmZA6Ypf8ptIN6MIa1deSX8W4hVj8PlhnjIEjasTCNio'             # keep the quotes, replace this with your consumer secret key
-ACCESS_KEY = '845541669370023936-RFA65KEuv8cO3Xt0Ek9rJEkXrKCyu2a'                  # keep the quotes, replace this with your access token
-ACCESS_SECRET = 'aMRRjxU1ExVceX40fFN9lGOiJkCIzBqx1YPwL0ZG5Cjox'                    # keep the quotes, replace this with your access token secret
+CONSUMER_KEY = ''                                         # keep the quotes, replace this with your consumer key
+CONSUMER_SECRET = ''             # keep the quotes, replace this with your consumer secret key
+ACCESS_KEY = ''                  # keep the quotes, replace this with your access token
+ACCESS_SECRET = ''                    # keep the quotes, replace this with your access token secret
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth)
