@@ -51,7 +51,7 @@ def concatenate_and_format_tokens(tokens):
     httpstr = "http"
     for i in range(len(tokens)):
         if re.search(('http'), tokens[i]):
-            tokens[i] = re.sub('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '' ,tokens[i])
+            tokens[i] = re.sub(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '' ,tokens[i])
         tokens[i] = re.sub(r'[^a-zA-Z0-9.,:;#-]+', '', tokens[i])
         string += tokens[i] + ' '
     string = "('" + string + "', 'neg'),"
@@ -83,12 +83,16 @@ def main():
     for line in f:
         print(line)
         results = api.search(q=str(line), lang='en')
+        count = 0
         for tweet in results:
+            if count > 3:
+                break
             tokens = preprocess(str(tweet.text))
             writefile.write(concatenate_and_format_tokens(tokens))
             writefile.write("\n")
             writefile.flush()
-            #time.sleep(0.5)
+            count += 1
+            time.sleep(0.5)
     writefile.close()
 
 if __name__ == "__main__":
