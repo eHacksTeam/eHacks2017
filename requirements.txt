@@ -1,0 +1,6 @@
+tweepy
+textblob
+python -m textblob.download_corpora
+numpy
+matplotlib
+appJar
