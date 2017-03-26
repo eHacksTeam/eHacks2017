@@ -57,7 +57,7 @@ def main():
 	app.addLabel("problabel", "Probability", 3, 0, 2) 
 	app.addEntry("probbox", 4, 0, 2) 
 
-	app.addButtons(["display indicators"], [press], 5, 0, 2)
+	#app.addButtons(["display indicators"], [press], 5, 0, 2)
 
 	app.go()
 
