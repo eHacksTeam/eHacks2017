@@ -34,10 +34,6 @@ ACCESS_SECRET = 'aMRRjxU1ExVceX40fFN9lGOiJkCIzBqx1YPwL0ZG5Cjox'  # keep the quot
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth)
-filename = open(argfile, 'r')
-f = filename.readlines()
-writefile = open(argfile2, 'w')
-
 
 def tokenize(s):
     return tokens_re.findall(s)
@@ -62,7 +58,7 @@ def concatenate_and_format_tokens(tokens):
     return string
 
 
-def get_tweet_url(tweet):
+def get_url_by_tweet(tweet):
     return tweet.place["url"]
 
 
@@ -70,13 +66,30 @@ def get_user_by_tweet(tweet):
     return tweet.user["screen_name"]
 
 
-for line in f:
-    print(line)
-    results = api.search(q=str(line), lang='en')
-    for tweet in results:
-        tokens = preprocess(str(tweet.text))
-        writefile.write(concatenate_and_format_tokens(tokens))
-        writefile.write("\n")
-        writefile.flush()
-        #time.sleep(0.5)
-writefile.close()
+def get_user(name):
+    return api.get_user(screen_name=str(name))
+
+
+def get_tweets_from_user(name):
+    return api.user_timeline(screen_name=name)
+
+
+def main():
+    
+    filename = open(argfile, 'r')
+    f = filename.readlines()
+    writefile = open(argfile2, 'w')
+
+    for line in f:
+        print(line)
+        results = api.search(q=str(line), lang='en')
+        for tweet in results:
+            tokens = preprocess(str(tweet.text))
+            writefile.write(concatenate_and_format_tokens(tokens))
+            writefile.write("\n")
+            writefile.flush()
+            #time.sleep(0.5)
+    writefile.close()
+
+if __name__ == "__main__":
+    main()

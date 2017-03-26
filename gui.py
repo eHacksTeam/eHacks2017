@@ -18,8 +18,10 @@ app = gui()
 def press(name):
 	url = app.getEntry("urlbox")
 	if url.lstrip()[0] is "@":
-		#user = get_user(url.lstrip()[0],tweetnum)
-		#get_tweets_from_user(user.name)
+		user = tb.get_user(url.lstrip()[1:])
+		print(user.id)
+		tweets = tb.get_tweets_from_user(user.name)
+		print(tweets[0].text)
 		print("runscript for username")
 
 		# app2.go()
@@ -42,7 +44,7 @@ def main():
 	app.addLabel("title","Mean Tweet Analyzer",0,0,2) 
 
 	app.addEntry("urlbox", 1, 0)
-	app.setEntry("urlbox","string input")
+	app.setEntry("urlbox","URL or @username")
 	app.addButtons(["Analyze"], [press], 1, 1, 2)
 
 	app.addHorizontalSeparator(2,0,4)
@@ -52,9 +54,9 @@ def main():
 
 
 
-	app2.addLabel("title","How many tweets do you want to assess",0,0,2) 
-	app2.addNumericEntry("numbox",10)
-	app2.addButtons(["Ok", "Cancel"], [updatelabel, stop])
+	# app2.addLabel("title","How many tweets do you want to assess",0,0,2) 
+	# app2.addNumericEntry("numbox",10)
+	# app2.addButtons(["Ok", "Cancel"], [updatelabel, stop])
 
 	#app.addButtons(["display indicators"], [press], 4, 0, 2)
 
