@@ -1,4 +1,4 @@
-# eHacks2017
+# MeanTweetReader - eHacks2017
 Project for 2017 eHacks
 
 ## General Guide:
